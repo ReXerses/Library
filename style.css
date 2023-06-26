@@ -37,6 +37,8 @@ header {
     background-color: aquamarine;
     display: grid;
     padding: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
 }
 
 .modal {
@@ -69,8 +71,8 @@ header {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    height: 150px;
-    width: 300px;
+    height: 200px;
+    justify-content: center;
     padding: 30px;
     background-color: #fffce9;
     background-image: url(https://www.transparenttextures.com/patterns/cardboard.png);
@@ -79,7 +81,16 @@ header {
     box-shadow: 5px 5px 3px;
   }
 
+  button > img {
+    height: 25px;
+    width: 25px;
+  }
 
+.icone {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+}
 
   .footer {
     font-size: 2rem;

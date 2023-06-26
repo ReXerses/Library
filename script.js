@@ -56,21 +56,67 @@ form.addEventListener('submit', function (event) {
 
   event.preventDefault();
 
-  const formData = new FormData(form);
-  // 2: store form data in object
-  const oggettoDallEvento = formDataToObject(formData);
+  const datiForm = new FormData(form);
 
-  let valori = Object.values(oggettoDallEvento);
+  // 2: store form data in object
+  const storedData = formDataToObject(datiForm);
+
+  let valori = Object.values(storedData);
 
   const libro = new Book (valori[0], valori[1], valori[2] , valori[3]);
 
+  aggiungiCard(libro);
+
+  addBookToLibrary(libro);
   console.log (libro);
 
 });
 
 
+function aggiungiCard (libro) {
+  const card = document.createElement("div");
 
+  const icone = document.createElement('div')
+  icone.classList.add('icone');
 
+  const titolo = document.createElement('span')
+  let nodo = document.createTextNode(`TITOLO: ${libro.titolo}`);
+  titolo.appendChild(nodo);
+  card.appendChild(titolo);
+  
+  const autore = document.createElement(`span`);
+  nodo = document.createTextNode(`AUTORE: ${libro.autore}`);
+  autore.appendChild(nodo);
+  card.appendChild(autore);
+
+  const numeroPagine = document.createElement(`span`);
+  nodo = document.createTextNode(`N.PAGINE: ${libro.pagine}`);
+  numeroPagine.appendChild(nodo);
+  card.appendChild(numeroPagine);
+
+  const lettoOrNot = document.createElement(`span`);
+  nodo = document.createTextNode(`LETTO: ${libro.letto}`);
+  lettoOrNot.appendChild(nodo);
+  card.appendChild(lettoOrNot);
+
+  const btn_read = document.createElement('button')
+  nodo = document.createElement('img')
+  nodo.src = "./media/read.svg"
+  btn_read.appendChild(nodo);
+  icone.appendChild(btn_read);
+
+  const btn_remove = document.createElement('button')
+  nodo = document.createElement('img')
+  nodo.src = "./media/book-remove.svg"
+  btn_remove.appendChild(nodo);
+  icone.appendChild(btn_remove);
+
+  card.appendChild(icone);
+  card.classList.add('card');
+
+  const mainContainer = document.getElementById('mainContainer');
+  mainContainer.appendChild(card);
+}
 
 
 
