@@ -55,14 +55,20 @@ function formDataToObject(formData) {
 form.addEventListener('submit', function (event) {
 
   event.preventDefault();
-  
+
   const formData = new FormData(form);
   // 2: store form data in object
-  const jsonObject = formDataToObject(formData);
+  const oggettoDallEvento = formDataToObject(formData);
 
-  console.log(jsonObject);
+  let valori = Object.values(oggettoDallEvento);
 
-})
+  const libro = new Book (valori[0], valori[1], valori[2] , valori[3]);
+
+  console.log (libro);
+
+});
+
+
 
 
 

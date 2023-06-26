@@ -35,6 +35,8 @@ header {
 .main {
     flex: 1;
     background-color: aquamarine;
+    display: grid;
+    padding: 2rem;
 }
 
 .modal {
@@ -61,6 +63,20 @@ header {
     align-items: center;
     flex-flow: column wrap;
     gap: 1rem;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 150px;
+    width: 300px;
+    padding: 30px;
+    background-color: #fffce9;
+    background-image: url(https://www.transparenttextures.com/patterns/cardboard.png);
+    border-radius: 16px;
+    border-left: 10px solid #339b38;
+    box-shadow: 5px 5px 3px;
   }
 
 
