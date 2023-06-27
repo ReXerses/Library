@@ -1,10 +1,33 @@
 let myLibrary = [];
-let titolo, autore, pagine, letto, continua = 2;
-let str;
 let aperto = 0;
+
+const mainContainer = document.getElementById('mainContainer');
 const form = document.querySelector('form');
+const submitBtn = document.getElementById('add');
+
+let card;  
 
 
+function removeBookFromLibrary(bookId) {
+  myLibrary = myLibrary.filter(book => book.id !== bookId); // Filtra l'array myLibrary rimuovendo il libro corrispondente all'ID
+}
+
+function removeCardFromDOM(bookId) {
+  const card = document.getElementById(bookId); // Ottieni la card dal DOM utilizzando l'ID del libro
+  card.remove(); // Rimuovi la card dal DOM
+}
+
+Book.prototype.cambiaLetto = function () {
+  if (this.letto === 'si') {
+    this.letto = 'no';
+    const lettoOrNot = document.getElementById(`letto_${this.id}`);
+    lettoOrNot.textContent = `LETTO: ${this.letto}`;
+  } else if( this.letto === 'no') {
+    this.letto = 'si';
+    const lettoOrNot = document.getElementById(`letto_${this.id}`);
+    lettoOrNot.textContent = `LETTO: ${this.letto}`;
+  }
+}
 
 function Book (titolo, autore, pagine, letto) {
     
@@ -19,16 +42,14 @@ function Book (titolo, autore, pagine, letto) {
     myLibrary.push(libro);
   }
 
-
-
+/* ------------------------- MODALE -------------------------------*/
 const modale = document.getElementById("modale");
 
-// Get the button that opens the modal
+// pulsante per aprire il modale
 const open = document.getElementById("open");
 
 
-
-// When the user clicks the button, open the modal 
+// quando un utente clicca il pulsante, apre il modale 
 open.onclick = function() {
   if (aperto === 0) {
     modale.style.display = "flex";
@@ -38,6 +59,7 @@ open.onclick = function() {
     aperto = 0;
   }
 }
+/*------------------------------------------------------------------*/
 
 function formDataToObject(formData) {
   const normalizeValues = (values) => (values.length > 1) ? values : values[0];
@@ -49,8 +71,6 @@ function formDataToObject(formData) {
 
   return object;
 };
-
-
 
 form.addEventListener('submit', function (event) {
 
@@ -65,15 +85,16 @@ form.addEventListener('submit', function (event) {
 
   const libro = new Book (valori[0], valori[1], valori[2] , valori[3]);
 
+  libro.id= myLibrary.length;
+
   aggiungiCard(libro);
 
   addBookToLibrary(libro);
-  console.log (libro);
 
 });
 
-
 function aggiungiCard (libro) {
+
   const card = document.createElement("div");
 
   const icone = document.createElement('div')
@@ -97,60 +118,44 @@ function aggiungiCard (libro) {
   const lettoOrNot = document.createElement(`span`);
   nodo = document.createTextNode(`LETTO: ${libro.letto}`);
   lettoOrNot.appendChild(nodo);
+  lettoOrNot.setAttribute('id', `letto_${libro.id}`);
   card.appendChild(lettoOrNot);
 
   const btn_read = document.createElement('button')
   nodo = document.createElement('img')
   nodo.src = "./media/read.svg"
   btn_read.appendChild(nodo);
+  btn_read.classList.add('read_not');
+  btn_read.setAttribute('id', libro.id);
+
+  btn_read.addEventListener('click', function(event) {
+    const bookId = parseInt(btn_read.getAttribute('id'));
+    libro.cambiaLetto();
+  });
+
   icone.appendChild(btn_read);
 
   const btn_remove = document.createElement('button')
   nodo = document.createElement('img')
   nodo.src = "./media/book-remove.svg"
   btn_remove.appendChild(nodo);
+  btn_remove.classList.add('rimuovi_libro');
+  btn_remove.setAttribute('id', libro.id)
+
+  btn_remove.addEventListener('click', function(event) {
+    const bookId = parseInt(btn_remove.getAttribute('id'));
+    removeBookFromLibrary(bookId);
+    removeCardFromDOM(bookId);
+  });
+
   icone.appendChild(btn_remove);
 
+  
   card.appendChild(icone);
   card.classList.add('card');
+  card.setAttribute('id', libro.id)
 
-  const mainContainer = document.getElementById('mainContainer');
   mainContainer.appendChild(card);
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*while (continua != 1) {
-
-  titolo = prompt('mi dici il titolo?');
-  autore= prompt ("mi dici l'autore? ");
-  pagine= prompt('quante pagine ha?');
-  letto= prompt('hai letto il libro?', 'si o no');
-
-  const libro = new Book (titolo, autore, pagine, letto);
-  
-  addBookToLibrary(libro);
-    continua= prompt ('per terminare inserire 1');
-}
-
-
-    str = JSON.stringify(myLibrary); // (Optional) beautiful indented output.
-    console.log(str);
-*/
