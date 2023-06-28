@@ -102,6 +102,8 @@ form.addEventListener('submit', function (event) {
 
   addBookToLibrary(libro);
 
+  form.reset();
+
 });
 
 function aggiungiCard (libro) {
