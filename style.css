@@ -92,11 +92,10 @@ h1 {
   }
 
   .card {
-    height: 190px;
-    padding: 30px;
+    height: 250px;
+    padding: 19px;
     box-shadow: 5px 5px 3px;
     border: 1px solid #888;
-    align-items: center;
     flex-flow: column wrap;
     display: flex;
     background: rgba(255, 255, 255, 0.2);
@@ -104,6 +103,12 @@ h1 {
     backdrop-filter: blur(5.3px);
     justify-content: space-between;
     font-family: GentiumBook, sans-serif;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .card.show {
+    opacity: 1;
   }
 
   button > img {
@@ -157,6 +162,10 @@ label {
 
 button {
     cursor: pointer;
+}
+
+button:active {
+    transform: scale(1.05);
 }
 
 #add {

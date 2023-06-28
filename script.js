@@ -62,7 +62,7 @@ open.onclick = function() {
   } else {
 
     modale.style.opacity = "0";
-    
+
     setTimeout(function() {
       modale.style.display = 'none';
     }, 300);
@@ -167,6 +167,17 @@ function aggiungiCard (libro) {
   card.setAttribute('id', libro.id)
 
   mainContainer.appendChild(card);
+
+  setTimeout(function() {
+    card.classList.add("show");
+  }, 100);
 }
 
 
+let non_cercare_il_gatto_di_lovecraft = new Book ('Alle montagne della follia', 'H. P. Lovecraft', 206 , 'Si');
+
+non_cercare_il_gatto_di_lovecraft.id= myLibrary.length;
+
+  aggiungiCard(non_cercare_il_gatto_di_lovecraft);
+
+  addBookToLibrary(non_cercare_il_gatto_di_lovecraft);
