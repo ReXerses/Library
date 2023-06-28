@@ -67,11 +67,13 @@ h1 {
     width: fit-content;
     padding-right: 5px;
     overflow: hidden;
-    right: 0;
     justify-content: center;
     align-items: center;
     z-index: 1;
     transition: opacity 0.3s ease;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
 
