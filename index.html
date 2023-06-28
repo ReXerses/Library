@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
+    <link rel="font" href="./media/GentiumBookPlus-Italic.ttf">
     <title>Library</title>
 </head>
 <body>
@@ -12,7 +13,7 @@
     <header class="header">
 
         <div class="logo">
-            <img src="./media/open-blank-book-pages.png" alt="logo" height="45px">
+            <img src="./media/open-blank-book-pages.png" alt="logo">
             <h1>Libreria</h1>
         </div>
         <button id="open"><img src="./media/book-plus.svg" alt="Aggiungi"></button>
@@ -24,31 +25,34 @@
 
     <div class="main" id="mainContainer">
         <div id="modale" class="modal">
-
-            
         
                 <form class="contenuto-modale" action="#" method="get">
                     <div class="input">
                         <label for="titolo">Titolo del libro:</label>
-                        <input type="text" id="titolo" name="titolo" required>
+                        <input type="text" id="titolo" name="titolo" required autocomplete="off">
                     </div>
 
                     <div class="input">
                         <label for="autore">Autore del libro:</label>
-                        <input type="text" id="autore" name="autore" required>
+                        <input type="text" id="autore" name="autore" required autocomplete="off">
                     </div>
 
                     <div class="input">
                         <label for="pagine">Numero Pagine:</label>
-                        <input type="number" id="pagine" name="pagine" min="1">
+                        <input type="number" id="pagine" name="pagine" min="1" required autocomplete="off">
                     </div>
 
                     <label for="si_no_radio">Letto?</label>
-                    <div class="input"> 
-                            
-                            <input type="radio" name="si_no" id="letto" value="si">Si</input>            
-
-                            <input type="radio" name="si_no" id="NonLetto"value="no">No</input>
+                    
+                    <div class="input_radio"> 
+                            <label for="si_no_radio" class="etichetta">
+                                <input type="radio" name="si_no" id="letto" value="Si"/>
+                                Si            
+                            </label>
+                            <label for="si_no_radio" class="etichetta">
+                                <input type="radio" name="si_no" id="NonLetto"value="No"></input>
+                                No
+                            </label>
                         
                     </div>
 
@@ -57,9 +61,6 @@
                     </div>
                 </form>
         </div>
-
-
-        
 
     </div>
     

@@ -18,12 +18,12 @@ function removeCardFromDOM(bookId) {
 }
 
 Book.prototype.cambiaLetto = function () {
-  if (this.letto === 'si') {
-    this.letto = 'no';
+  if (this.letto === 'Si') {
+    this.letto = 'No';
     const lettoOrNot = document.getElementById(`letto_${this.id}`);
     lettoOrNot.textContent = `LETTO: ${this.letto}`;
-  } else if( this.letto === 'no') {
-    this.letto = 'si';
+  } else if( this.letto === 'No') {
+    this.letto = 'Si';
     const lettoOrNot = document.getElementById(`letto_${this.id}`);
     lettoOrNot.textContent = `LETTO: ${this.letto}`;
   }
@@ -44,7 +44,6 @@ function Book (titolo, autore, pagine, letto) {
 
 /* ------------------------- MODALE -------------------------------*/
 const modale = document.getElementById("modale");
-
 // pulsante per aprire il modale
 const open = document.getElementById("open");
 
@@ -52,10 +51,22 @@ const open = document.getElementById("open");
 // quando un utente clicca il pulsante, apre il modale 
 open.onclick = function() {
   if (aperto === 0) {
+
     modale.style.display = "flex";
+
+    setTimeout(function() {
+      modale.style.opacity = "1";
+    }, 10);
+
     aperto = 1;
   } else {
-    modale.style.display = 'none';
+
+    modale.style.opacity = "0";
+    
+    setTimeout(function() {
+      modale.style.display = 'none';
+    }, 300);
+
     aperto = 0;
   }
 }
@@ -101,22 +112,22 @@ function aggiungiCard (libro) {
   icone.classList.add('icone');
 
   const titolo = document.createElement('span')
-  let nodo = document.createTextNode(`TITOLO: ${libro.titolo}`);
+  let nodo = document.createTextNode(`TITOLO :  ${libro.titolo} `);
   titolo.appendChild(nodo);
   card.appendChild(titolo);
   
   const autore = document.createElement(`span`);
-  nodo = document.createTextNode(`AUTORE: ${libro.autore}`);
+  nodo = document.createTextNode(`AUTORE :  ${libro.autore} `);
   autore.appendChild(nodo);
   card.appendChild(autore);
 
   const numeroPagine = document.createElement(`span`);
-  nodo = document.createTextNode(`N.PAGINE: ${libro.pagine}`);
+  nodo = document.createTextNode(`N.PAGINE : ${libro.pagine} `);
   numeroPagine.appendChild(nodo);
   card.appendChild(numeroPagine);
 
   const lettoOrNot = document.createElement(`span`);
-  nodo = document.createTextNode(`LETTO: ${libro.letto}`);
+  nodo = document.createTextNode(`LETTO : ${libro.letto} `);
   lettoOrNot.appendChild(nodo);
   lettoOrNot.setAttribute('id', `letto_${libro.id}`);
   card.appendChild(lettoOrNot);
