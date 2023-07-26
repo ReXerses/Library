@@ -17,26 +17,28 @@ function removeCardFromDOM(bookId) {
   card.remove(); // Rimuovi la card dal DOM
 }
 
-Book.prototype.cambiaLetto = function () {
-  if (this.letto === 'Si') {
-    this.letto = 'No';
-    const lettoOrNot = document.getElementById(`letto_${this.id}`);
-    lettoOrNot.textContent = `LETTO: ${this.letto}`;
-  } else if( this.letto === 'No') {
-    this.letto = 'Si';
-    const lettoOrNot = document.getElementById(`letto_${this.id}`);
-    lettoOrNot.textContent = `LETTO: ${this.letto}`;
+class Book {
+  constructor(titolo, autore, pagine, letto) {
+    this.titolo = titolo;
+    this.autore = autore;
+    this.pagine = pagine;
+    this.letto = letto;
+  }
+
+  cambiaLetto() {
+    if (this.letto === 'Si') {
+      this.letto = 'No';
+      const lettoOrNot = document.getElementById(`letto_${this.id}`);
+      lettoOrNot.textContent = `LETTO: ${this.letto}`;
+    } else if (this.letto === 'No') {
+      this.letto = 'Si';
+      const lettoOrNot = document.getElementById(`letto_${this.id}`);
+      lettoOrNot.textContent = `LETTO: ${this.letto}`;
+    }
   }
 }
 
-function Book (titolo, autore, pagine, letto) {
-    
-    this.titolo= titolo
-    this.autore = autore
-    this.pagine= pagine
-    this.letto= letto
-    
-  }
+
 
   function addBookToLibrary (libro) {
     myLibrary.push(libro);
